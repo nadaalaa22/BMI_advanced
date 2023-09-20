@@ -132,7 +132,7 @@ class _BmiHomeScreenState extends State<BmiHomeScreen> {
             width: double.infinity,
             color: Colors.black,
             child: MaterialButton(
-              color: Colors.purple,
+              color: Colors.teal,
               height: 50.0,
               onPressed: () {
                 var result = AgeWeight.initNumber / pow(height / 100, 2);

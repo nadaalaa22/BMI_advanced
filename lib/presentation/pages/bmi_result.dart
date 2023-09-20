@@ -41,7 +41,7 @@ class BmiResult extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(fontSize: 32,color: Colors.teal),
+                        style: const TextStyle(fontSize: 32,color: Colors.teal,fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 20,),
                       Text(
@@ -78,9 +78,9 @@ class BmiResult extends StatelessWidget {
             ),
         Container(
           width: double.infinity,
-          color: Colors.black,
+
           child: MaterialButton(
-            color: Colors.black,
+            color: Color(0xff006666),
             height: 50.0,
             onPressed: () {
               Navigator.pop(context);

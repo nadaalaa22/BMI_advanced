@@ -21,7 +21,7 @@ class GenderSelection extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: isSelected ? Colors.purple[400] : Colors.grey[400],
+          color: isSelected ? Colors.teal : Colors.grey[400],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
