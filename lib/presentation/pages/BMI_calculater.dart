@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:quiz2/data/models/result.dart';
 import 'package:quiz2/presentation/pages/bmi_result.dart';
 
 import '../widgets/age_weight.dart';
@@ -14,10 +15,11 @@ class BmiHomeScreen extends StatefulWidget {
 }
 
 class _BmiHomeScreenState extends State<BmiHomeScreen> {
+  late Result result ;
   double height = 120;
   int age = 10;
   int weight = 40;
-  bool isMale = true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +41,10 @@ class _BmiHomeScreenState extends State<BmiHomeScreen> {
                 Expanded(
                   child: GenderSelection(
                     text: 'Male',
-                    isSelected: isMale,
+                    isSelected: result.isMale,
                     onTap: (selected) {
                       setState(() {
-                        isMale = selected;
+                        result.isMale = selected;
                       });
                     }, imageUrl: 'assets/images/male.png',
                   ),
@@ -53,10 +55,10 @@ class _BmiHomeScreenState extends State<BmiHomeScreen> {
                 Expanded(
                   child: GenderSelection(
                     text: 'Female',
-                    isSelected: !isMale,
+                    isSelected: !result.isMale,
                     onTap: (selected) {
                       setState(() {
-                        isMale = !selected;
+                        result.isMale = !selected;
                       });
                     }, imageUrl: 'assets/images/female-removebg-preview.png',
                   ),
@@ -89,7 +91,7 @@ class _BmiHomeScreenState extends State<BmiHomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${height.round()}',
+                          '${result.height.round()}',
                           style: const TextStyle(
                               fontSize: 40.0, fontWeight: FontWeight.bold),
                         ),
@@ -101,7 +103,7 @@ class _BmiHomeScreenState extends State<BmiHomeScreen> {
                       ],
                     ),
                     Slider(
-                      value: height,
+                      value: result.height,
                       min: 80.0,
                       max: 220.0,
                       thumbColor: Colors.black,
@@ -109,7 +111,7 @@ class _BmiHomeScreenState extends State<BmiHomeScreen> {
                       inactiveColor: Colors.grey[300],
                       onChanged: (value) {
                         setState(() {
-                          height = value;
+                          result.height = value;
                         });
                       },
                     ),
@@ -135,15 +137,12 @@ class _BmiHomeScreenState extends State<BmiHomeScreen> {
               color: Colors.teal,
               height: 50.0,
               onPressed: () {
-                var result = AgeWeight.initNumber / pow(height / 100, 2);
+                result.calcResult = AgeWeight.initNumber / pow(result.height / 100, 2);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => BmiResult(
-                        result: result.round(),
-                        title: result.round()<18?'UNDERWEIGHT':result.round()>18&&result.round()<25?'Normal':'OVERWEIGHT',
-                        text: result.round()<18?' you have to eat more':result.round()>18&&result.round()<25?'you are a normal body weight ':'you have to eat less' ,
-
+                        result: result,
                           ),
                   ),
                 );
