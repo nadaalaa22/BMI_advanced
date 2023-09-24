@@ -15,10 +15,7 @@ class BmiHomeScreen extends StatefulWidget {
 }
 
 class _BmiHomeScreenState extends State<BmiHomeScreen> {
-  late Result result ;
-  double height = 120;
-  int age = 10;
-  int weight = 40;
+   Result result = Result(40, 20, 130, true, 0);
 
 
   @override

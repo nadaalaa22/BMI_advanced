@@ -53,7 +53,7 @@ class BmiResult extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        '${result.calcResult}',
+                        '${result.calcResult.round()}',
                         style: const TextStyle(fontSize: 48),
                       ),
                       const SizedBox(
